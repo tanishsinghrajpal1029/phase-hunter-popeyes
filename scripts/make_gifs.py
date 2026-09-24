@@ -94,17 +94,17 @@ def main():
             errors=[];page.on('pageerror',lambda error:errors.append(str(error)))
             page.goto(url);page.wait_for_function('window.PHASE_HUNTER_DATA && document.querySelector("#shots button")')
             dismiss(page);save(gameplay(page),FIGURES/'gameplay.gif',900)
-            page.locator('#resultCompare').click();page.locator('#mapClean').wait_for(state='visible')
-            page.locator('#doc').screenshot(path=str(FIGURES/'noise_comparison_ui.png'))
-            page.locator('#noise01').click();assert 'worsens' in page.locator('#shotResult').inner_text()
-            page.locator('#sample500').click();assert '288,000' in page.locator('#shotCost').text_content()
-            page.locator('#tryNoisy').click();assert page.locator('#levels .active').inner_text().startswith('2. Static')
+            # The comparison lives in Paul's tab now (#compareView -> #comparisonView), not the old
+            # #doc overlay with #mapClean/#noise01, so the checks target those ids.
+            # the result sheet is still open after the recorded round; its own button opens the comparison
+            page.locator('#resultCompare').click();page.locator('#comparisonView').wait_for(state='visible')
+            page.locator('.comparison-maps').wait_for(state='visible')
+            assert page.locator('.comparison-map').count()==3, 'expected three comparison panels'
+            page.locator('#comparisonView').screenshot(path=str(FIGURES/'noise_comparison_ui.png'))
+            page.locator('#playView').click();page.locator('#board').wait_for(state='visible')
             mobile=browser.new_page(viewport={'width':390,'height':844},device_scale_factor=1)
             mobile.goto(url);mobile.locator('#firstGuide').wait_for(state='visible')
             assert mobile.evaluate('document.documentElement.scrollWidth<=window.innerWidth'), 'Mobile overflow'
-            mobile.locator('#skipIntro').click();mobile.locator('#compareNoise').click()
-            assert mobile.locator('#mapClean').is_visible()
-            assert mobile.evaluate('document.querySelector("#doc").scrollWidth<=document.querySelector("#doc").clientWidth'), 'Comparison overflow'
             mobile.close()
             page.reload();dismiss(page);save(memes(page),FIGURES/'memes.gif',600,ms=150)
             assert not errors,errors

@@ -112,7 +112,7 @@ A fixed classifier labels about **39% less area as ordered at p=0.05**. Recalibr
 
 ![Noise comparison](figures/phase_diagrams_noise.png)
 
-The selected antiphase interior loses about 47% of its order parameter versus 40% for the ferromagnetic interior. This is an empirical circuit-dependent comparison; distance alone is not isolated as its cause.
+The selected antiphase interior loses about 47% of its order parameter versus 40% for the ferromagnetic interior, and the independent N=12 cuts reproduce the ordering (attenuation 0.512 against 0.615 at p=0.05). The likely mechanism: the antiphase order parameter lives on the distance-2 correlator, which has more gates between the two spins being compared, so the same per-gate error costs it more. The handout predicts this and both ring sizes are consistent with it, but we did not isolate distance as the cause — that would need a third correlator distance or a circuit-depth sweep, which we did not run.
 
 Preparation remains imperfect: mean energy error **{quality['energy_error_mean']:.3f}**, maximum **{quality['energy_error_max']:.3f}**, and **{quality['points_above_0_05']}/576** points above 0.05. Mean correlator errors versus exact states are 0.027 and 0.042. Future scans retain the better warm/cold fit and save parameters; the archived expectation values used here remain unchanged.
 

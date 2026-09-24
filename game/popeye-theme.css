@@ -145,3 +145,40 @@ details.card summary{cursor:pointer;font-weight:600;font-size:13px}details.card[
 .comparison-explain{margin:15px 0;padding:13px;border:1px solid #456371;border-radius:7px}.comparison-explain summary,.shot-experiment summary{cursor:pointer;font-weight:600}.comparison-explain[open] summary{margin-bottom:12px}
 .shot-experiment{border-top:1px solid #456371;margin-top:20px}.shot-scores{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:15px 0}.shot-scores div{background:#102d3e;border:1px solid #456371;border-radius:7px;padding:12px}.shot-scores b,.shot-scores span{display:block}.shot-scores b{font-size:28px;color:#c7e1a7}.shot-scores span{font-size:12px;color:#bdcdd0}
 @media(max-width:720px){.comparison-maps{grid-template-columns:1fr}.comparison-maps figure{max-width:480px;width:100%;margin:auto}.comparison-top{align-items:flex-start;flex-direction:column}.after-voyage{display:block}.after-voyage .btn{width:100%}.first-guide{padding:14px}.first-guide h2{font-size:21px}.first-guide ol{gap:8px}.first-guide li span{font-size:11px}.first-guide li b{font-size:14px}.shot-scores b{font-size:22px}.first-voyage .voyage-banner h2{font-size:18px}}
+
+/* Above-the-fold pass. The map used to start ~555px down with the tab row, banner and first-round
+   guide stacked above it, so under half of it was visible on a laptop. The guide now sits in the
+   sidebar beside the map, the banner is a one-line strap in every state, the stage cards and the
+   view-switch row lose some air, and the map scales to the viewport height so that it and the
+   Reveal button fit on screen. Hit-testing uses the canvas bounding rect, so scaling is safe. */
+.wrap{padding-top:14px}
+header{padding-bottom:12px;margin-bottom:12px}
+.wrap .voyage-banner{padding:9px 20px;grid-template-columns:1fr 52px;min-height:0;margin-bottom:12px;gap:14px;box-shadow:0 3px 0 #d1c5a7}
+.wrap .voyage-banner:after{height:5px}
+.wrap .voyage-banner h2{font-size:20px;line-height:1.15;margin:0}
+.wrap .voyage-banner h2 br{display:none}
+.wrap .voyage-banner h2 em{margin-left:6px}
+.wrap .voyage-banner p,.wrap .voyage-banner .crew-label,.wrap .captain-portrait figcaption{display:none}
+.wrap .captain-portrait{width:48px;height:48px;border-width:3px;margin:0;box-shadow:0 0 0 2px var(--navy)}
+aside .first-guide{display:block;padding:14px 16px;margin:0 0 14px}
+aside .first-guide h2{font-size:19px;margin:2px 0 10px}
+aside .first-guide ol{grid-template-columns:1fr;gap:9px}
+aside .first-guide li b{font-size:14px}
+aside .first-guide li span{font-size:12px}
+aside .first-guide p{font-size:12px;margin:10px 0 2px}
+aside .first-guide .text-button{margin-top:8px;white-space:normal;text-align:left;padding:4px 0}
+.route-label{margin:0 0 6px}
+.wrap .levels{gap:8px;margin-bottom:12px}
+.wrap .lvl{padding:7px 12px;box-shadow:0 2px 0 #d7cfb8}
+.wrap .lvl b{font-size:14px}
+.wrap .lvl small,.wrap .lvl span{font-size:11px}
+@media (min-width: 901px){
+  /* 720x560 canvas: width = height * 9/7. Fill the column unless viewport height says otherwise. */
+  #board{height:auto;margin:0 auto;width:min(100%, calc((100vh - 284px) * 9 / 7))}
+  body:not(.first-voyage) #board{width:min(100%, calc((100vh - 392px) * 9 / 7))}
+}
+/* The view-switch row is Paul's; keep it, just shave its padding so it costs ~48px rather than ~64. */
+.wrap .view-nav{margin:0 0 12px}
+.wrap .view-switch{padding:3px}
+.wrap .view-switch button{padding:7px 14px}
+.wrap .view-nav>.btn{padding-top:8px;padding-bottom:8px}

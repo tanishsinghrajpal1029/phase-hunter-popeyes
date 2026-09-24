@@ -69,7 +69,7 @@ print('Independently recomputed energy error:',error.mean(),error.max())
 assert np.isclose(error.mean(),noise['vqe_quality']['energy_error_mean'])
 ''')
 section('''### Fixed versus recalibrated inference
-The fixed clean rule calls about 39% less area ordered at p=0.05. Recalibration recovers most area, with small boundary changes. This is not evidence that physical transitions cannot move under noise. The selected antiphase and ferromagnetic interiors lose about 47% and 40% of their signals; distance alone is not established as the explanation.''','''for p,row in noise['phase_areas'].items():
+The fixed clean rule calls about 39% less area ordered at p=0.05. Recalibration recovers most area, with small boundary changes. This is not evidence that physical transitions cannot move under noise. The antiphase and ferromagnetic interiors lose about 47% and 40% of their signals; the N=12 cuts reproduce the ordering (0.512 vs 0.615). Likely mechanism: the antiphase lives on the distance-2 correlator, with more gates between the compared spins, so the same per-gate error costs it more. Both sizes agree with this handout prediction, but isolating distance would need a third distance or a depth sweep.''','''for p,row in noise['phase_areas'].items():
     print(p,'ordered area: fixed',row['fixed_rule']['ordered'],'refitted',row['recalibrated']['ordered'])
 print('Cut near kappa=.30:',noise['boundary_cuts']['kappa=0.30'])
 show_figure('phase_diagrams_noise.png')

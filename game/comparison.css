@@ -64,3 +64,9 @@
 @media(max-width:999px){.comparison-maps{grid-template-columns:1fr}.comparison-map{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,.7fr)}.map-label{grid-column:2;grid-row:1;padding-top:24px}.comparison-map svg{grid-column:1;grid-row:1 / 3}.map-metrics{grid-column:2;grid-row:2;align-self:end;grid-template-columns:1fr;margin-bottom:14px;border-top:0}.map-label p{min-height:0}}
 @media(max-width:640px){.view-nav{gap:9px}.view-switch{width:100%;}.view-switch button{flex:1;padding:10px 8px}.view-nav>.btn{margin-left:0;width:100%}.comparison-map{display:block}.map-label{padding:16px 18px 0}.map-metrics{grid-template-columns:1fr 1fr;border-top:1px solid #d9d0b7;margin:0}.map-label p{min-height:0}.insight-grid{grid-template-columns:1fr;gap:22px}.shot-results th,.shot-results td{padding:10px 9px;font-size:12px}.comparison p{font-size:14px}.map-toolbar{gap:12px}.map-legend{gap:10px;font-size:11px}}
 @media(max-width:640px){.first-guide{display:block;padding:17px 18px}.first-guide h2{font-size:23px}.first-guide ol{gap:10px}.first-guide li{font-size:11px}.first-guide li b{font-size:13px}.text-button{margin-top:13px}.after-voyage{display:block}.after-voyage-actions{display:grid;gap:5px}.after-voyage .btn{width:100%;margin-top:12px}}
+
+/* popeye-theme.css still carries `.comparison-maps figure{background:#102d3e}` from an earlier
+   comparison overlay. It outranks `.comparison-map` and painted these panels navy under navy
+   text, so the titles and the big numbers vanished. Pin the panel to the palette it was written for. */
+.comparison .comparison-maps figure.comparison-map{background:#fffaeb;padding:0;border:1px solid #b9b8a6;color:var(--navy)}
+.comparison .comparison-maps figure.comparison-map h3,.comparison .comparison-maps figure.comparison-map strong{color:var(--navy)}

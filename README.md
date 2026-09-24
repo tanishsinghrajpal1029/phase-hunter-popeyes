@@ -12,7 +12,7 @@ Carnegie Mellon University, Information Networking Institute
 
 ![Phase Hunter nautical interface with measured points and an educational reaction](figures/gameplay.png)
 
-The first round is **Scan → Draw → Reveal**: one clean map, one scan strength and three clues before revealing. Stage choices, shot strengths and the AI appear after the first reveal; experienced players can skip ahead. No build step or account is needed.
+The game exposes a real inference problem: how much can you learn about a quantum magnet from a small number of noisy measurements? Drag five boundary handles, reveal your map score, and retry the same map to improve your strategy. No build step or account is needed.
 
 <details>
 <summary>Watch a current gameplay recording</summary>
@@ -93,7 +93,7 @@ A fixed classifier labels about **39% less area as ordered at p=0.05**. Recalibr
 
 ![Noise comparison](figures/phase_diagrams_noise.png)
 
-The selected antiphase interior loses about 47% of its order parameter versus 40% for the ferromagnetic interior. This is an empirical circuit-dependent comparison; distance alone is not isolated as its cause.
+The selected antiphase interior loses about 47% of its order parameter versus 40% for the ferromagnetic interior, and the independent N=12 cuts reproduce the ordering (attenuation 0.512 against 0.615 at p=0.05). The likely mechanism: the antiphase order parameter lives on the distance-2 correlator, which has more gates between the two spins being compared, so the same per-gate error costs it more. The handout predicts this and both ring sizes are consistent with it, but we did not isolate distance as the cause — that would need a third correlator distance or a circuit-depth sweep, which we did not run.
 
 Preparation remains imperfect: mean energy error **0.149**, maximum **0.323**, and **443/576** points above 0.05. Mean correlator errors versus exact states are 0.027 and 0.042. Future scans retain the better warm/cold fit and save parameters; the archived expectation values used here remain unchanged.
 

@@ -32,12 +32,12 @@ def main():
     p('This is finite-ring commensuration and a classifier limitation, not disappearance of the infinite-model antiphase. The 24 x 24 size comparison uses the same grid, reference mask and three-cluster rule; its N=8 score differs from the denser 40 x 40 headline result.')
     story.append(PageBreak())
     p('3. Noise changes the signal and the inferred map','Heading2')
-    fig('phase_diagrams_noise.png',350)
+    fig('phase_diagrams_noise.png',300)
     rows=[['Gate noise p','Ordered area: fixed clean rule','Ordered area: refitted rule']]
     for key,row in noise['phase_areas'].items():rows.append([key,f"{100*row['fixed_rule']['ordered']:.2f}%",f"{100*row['recalibrated']['ordered']:.2f}%"])
     table(rows,[80,210,210])
     q=noise['vqe_quality'];p(f"The 24 x 24 N=8 scan uses four-layer VQE fits on default.qubit, then identical parameters on default.mixed with target depolarization after each CNOT. Mean preparation-energy error is {q['energy_error_mean']:.3f}, maximum {q['energy_error_max']:.3f}; {q['points_above_0_05']}/576 points exceed 0.05. Comparisons across p share the prepared state.")
-    p('At p=0.05 the fixed classifier calls about 39% less area ordered. Recalibration recovers most of that area, with small boundary changes. This demonstrates classifier sensitivity, not invariant physical transitions. Selected antiphase and ferromagnetic interiors lose about 47% and 40% of their signals; distance alone is not established as the cause.')
+    p('At p=0.05 the fixed classifier calls about 39% less area ordered. Recalibration recovers most of that area, with small boundary changes. This demonstrates classifier sensitivity, not invariant physical transitions. Antiphase and ferromagnetic interiors lose about 47% and 40% of their signals; the N=12 cuts reproduce the ordering (0.512 vs 0.615). Likely mechanism: the antiphase lives on the distance-2 correlator, with more gates between the compared spins, so the same per-gate error costs it more. Both sizes agree with this handout prediction, but isolating distance would need a third distance or a depth sweep.')
     f20=finite['noise']['0.05']['20'];l20=finite['noise']['0.01']['20'];p(f"Paired finite-shot test (200 seeds, same full-register observations): at p=0.05 and 20 shots/point, recalibration raises agreement with the noiseless prepared-map labels from {100*f20['fixed']['mean']:.1f}% to {100*f20['recalibrated']['mean']:.1f}%. At p=0.01 it falls from {100*l20['fixed']['mean']:.1f}% to {100*l20['recalibrated']['mean']:.1f}%, showing that refitting is useful conditionally rather than automatically. This is transductive map inference, not state repair or held-out generalization.")
     p('4. Larger-system check: N=12 with noise','Heading2')
     rows=[['Cut (kappa)','p=0.05 attenuation','Fixed / rescaled shift in h']]
